@@ -1,0 +1,268 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=Poppins:wght@400;500;600;700&family=Roboto&family=Volkhov:wght@700&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:focus, :active {
+  outline: none;
+}
+
+a:focus, a:active {
+  outline: none;
+}
+
+nav, footer, header, aside {
+  display: block;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-style: 100%;
+  line-height: 1;
+  font-style: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+input, button, textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a, a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style-type: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-style: inherit;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Google Sans";
+  src: url("/fonts/ProductSans-Medium.woff");
+}
+a:link, :visited, :hover {
+  color: #212832;
+}
+
+.wrapper {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.main {
+  flex: 1 1 auto;
+}
+
+.container {
+  max-width: 1220px;
+  margin: 0 auto;
+}
+
+.header {
+  font-family: "Google Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.3;
+  color: #212832;
+  padding: calc(10px + 40 * (100vw - 768px) / 452) 0px;
+}
+@media (max-width: 1220px) {
+  .header {
+    padding: calc(10px + 40 * (100vw - 768px) / 452) calc(10px + 40 * (100vw - 768px) / 452);
+  }
+}
+.header .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+}
+.header .header__menu {
+  flex: 1 1 auto;
+  height: 100%;
+}
+.header .header__menu .menu__list {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: calc(20px + 30 * (100vw - 768px) / 452);
+}
+.header .header__action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: calc(20px + 62 * (100vw - 768px) / 452);
+  flex: 0 0 calc(180px + 100 * (100vw - 768px) / 452);
+  gap: calc(20px + 30 * (100vw - 768px) / 452);
+}
+.header .header__action .button {
+  width: calc(70px + 30 * (100vw - 768px) / 452);
+  height: 40px;
+  border: 1px solid #212832;
+  border-radius: 5px;
+  background-color: inherit;
+}
+.header .header__action .button-border {
+  border: none;
+}
+.header .header__action .language-switcher {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+.header .header__action .language-switcher .switcher {
+  display: flex;
+  align-items: center;
+}
+.header .header__action .language-switcher .switcher:before {
+  content: "EN";
+  margin-right: 10px;
+}
+.header .header__action .language-switcher .language__options {
+  display: none;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
+}
+.header .header__action .language-switcher .language__options li {
+  padding: 5px 0;
+}
+.header .header__action .language-switcher:hover .language__options {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 10px;
+  position: absolute;
+  top: 25px;
+  left: -10px;
+}
+
+.main__content {
+  width: 100%;
+  margin-top: 20px;
+}
+@media (max-width: 1220px) {
+  .main__content {
+    padding: 0 calc(10px + 40 * (100vw - 768px) / 452);
+  }
+}
+.main__content .container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 auto;
+}
+.main__content .main__about {
+  max-width: 545px;
+}
+.main__content .main__about .main__about-suptitle {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: calc(10px + 10 * (min(100vw, 1220px) - 768px) / 452);
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: #DF6951;
+  width: 100%;
+}
+.main__content .main__about .main__about-title {
+  font-family: "Volkhov";
+  font-style: normal;
+  font-weight: 700;
+  font-size: calc(40px + 44 * (min(100vw, 1220px) - 768px) / 452);
+  line-height: 106%;
+  letter-spacing: -0.04em;
+  color: #181E4B;
+  width: 100%;
+  margin-top: calc(10px + 14 * (min(100vw, 1220px) - 768px) / 452);
+}
+.main__content .main__about .main__about-subtitle {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(12px + 4 * (min(100vw, 1220px) - 768px) / 452);
+  line-height: 108%;
+  color: #5E6282;
+  width: 100%;
+  margin-top: calc(15px + 15 * (min(100vw, 1220px) - 768px) / 452);
+}
+.main__content .main__about .main__about-actions {
+  display: flex;
+  align-items: center;
+  margin-top: calc(15px + 19 * (min(100vw, 1220px) - 768px) / 452);
+}
+.main__content .main__about .main__about-actions .main-find_out {
+  background: #F1A501;
+  box-shadow: 0px 20px 35px rgba(241, 165, 1, 0.15);
+  border-radius: 10px;
+  padding: calc(10px + 10 * (min(100vw, 1220px) - 768px) / 452) calc(20px + 10 * (min(100vw, 1220px) - 768px) / 452);
+  font-family: "Google Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  text-align: center;
+  color: #FFFFFF;
+}
+.main__content .main__about .main__about-actions .main-play {
+  background: #DF6951;
+  box-shadow: 0px 15px 30px rgba(223, 105, 81, 0.3);
+  border-radius: 50%;
+  width: calc(32px + 20 * (min(100vw, 1220px) - 768px) / 452);
+  height: calc(32px + 20 * (min(100vw, 1220px) - 768px) / 452);
+  margin-left: calc(20px + 20 * (min(100vw, 1220px) - 768px) / 452);
+}
+.main__content .main__about .main__about-actions .main-play__title {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(14px + 3 * (min(100vw, 1220px) - 768px) / 452);
+  color: #686D77;
+  margin-left: 15px;
+}
+.main__content .main__image img {
+  width: calc(365px + 309 * (min(100vw, 1220px) - 768px) / 452);
+  height: calc(364px + 311 * (min(100vw, 1220px) - 768px) / 452);
+}
+
+/*# sourceMappingURL=style.css.map */
