@@ -6,6 +6,11 @@
   src: url("/fonts/ProductSans-Medium.woff");
 }
 
+@mixin calculator($property,$min_value,$max_value){
+  #{$property}: calc($min_value * 1px + ($max_value - $min_value) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+
+}
+
 a:link,:visited,:hover{
   color: #212832;
 }
@@ -43,23 +48,24 @@ a:link,:visited,:hover{
   }
   .header__menu{
     flex: 1 1 auto;
+    display: flex;
+    align-items: center;
     height: 100%;
+
     .menu__list {
-      width: 100%;
-      height: 100%;
       display: flex;
       justify-content: flex-end;
-      align-items: center;
-      gap: calc(20px + (50 - 20) * ((100vw - 768px) / (1220 - 768)));
+      width: 100%;
+      gap: calc(20px + (50 - 20) * ((min(100vw , 1220px) - 768px) / (1220 - 768)))
     }
   }
   .header__action {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: calc(20px + (82 - 20) * ((100vw - 768px) / (1220 - 768)));
+    margin-left: calc(20px + (82 - 20) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
     flex: 0 0 calc(180px + (280 - 180) * ((100vw - 768px) / (1220 - 768)));
-    gap: calc(20px + (50 - 20) * ((100vw - 768px) / (1220 - 768)));
+    gap: calc(20px + (50 - 20) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
     .button {
       width: calc(70px + (100 - 70) * ((100vw - 768px) / (1220 - 768)));
       height: 40px;
@@ -110,7 +116,7 @@ a:link,:visited,:hover{
   width: 100%;
   margin-top: 20px;
   @media (max-width: 1220px) {
-    padding: 0 calc(10px + (50 - 10) * ((100vw - 768px) / (1220 - 768)));
+    padding: 0 40px;
   }
   .container{
     display: flex;
@@ -119,7 +125,7 @@ a:link,:visited,:hover{
     margin: 0 auto;
   }
   .main__about{
-    max-width: 545px;
+      max-width: 545px;
     .main__about-suptitle{
       font-family: 'Poppins';
       font-style: normal;
@@ -186,11 +192,389 @@ a:link,:visited,:hover{
       }
     }
   }
+  @import "animation.scss";
   .main__image{
-    img{
+    position: relative;
+
+    .main__image-girl{
       width: calc(365px + (674 - 365) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
       height: calc(364px + (675 - 364) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+      z-index: 2;
     }
-
+    .main__image-plane{
+      width: calc(100px + (167 - 100) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+      height: calc(100px + (150 - 100) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+      position: absolute;
+      top: 0;
+      left: 10%;
+      transition: 0.3s all;
+      &:hover{
+        animation: fly 3s ease;
+      }
+    }
+    .second{
+      left: 70%;
+      z-index: -1;
+    }
   }
+}
+.main__services{
+  .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .main__services-suptitle{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: calc(10px + (18 - 10) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+    line-height: 1.5;
+    color: #5E6282;
+  }
+  .main__services-title{
+    font-family: 'Volkhov';
+    font-style: normal;
+    font-weight: 700;
+    font-size: calc(35px + (50 - 35) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+    line-height: 1.28;
+    text-align: center;
+    text-transform: capitalize;
+    color: #14183E;
+    margin-top: 10px;
+  }
+  .main__services-list{
+    display: flex;
+    flex-direction: row;
+    gap: calc(19px + (38 - 19) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+    .services__card{
+      position: relative;
+      .services__block{
+        position: absolute;
+        width: calc(40px + (100 - 40) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+        height: calc(40px + (100 - 40) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+        background: #DF6951;
+        border-radius: calc(15px + (30 - 15) * ((min(100vw , 1220px) - 768px) / (1220 - 768))) 0px 10px;
+        z-index:-1;
+        top:85%;
+        left:-20%;
+        display: none;
+      }
+      .services__item{
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: calc(10px + (30 - 10) * ((min(100vw , 1220px) - 768px) / (1220 - 768))) calc(20px + (40 - 20) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+        margin-top: calc(36px + (66 - 36) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+        .services__item-img{
+          height: calc(50px + (80 - 50) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+          width: calc(50px + (114 - 50) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+        }
+        .services__item-title{
+          font-family: 'Open Sans';
+          font-style: normal;
+          font-weight: 600;
+          font-size: calc(10px + (20 - 10) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+          line-height: 1.35;
+          text-align: center;
+          color: #1E1D4C;
+          margin-top: calc(15px + (30 - 15) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+          width:calc(70px + (190 - 70) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+        }
+        .services__item-subtitle{
+          font-family: 'Poppins';
+          font-style: normal;
+          font-weight: 500;
+          font-size: calc(10px + (16 - 10) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+          line-height: 162%;
+          color: #5E6282;
+          text-align: center;
+          margin-top: calc(7px + (15 - 7) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+        }
+      }
+    }
+    .services__card:hover{
+      .services__item{
+        background: #FFFFFF;
+        transform: scale(1.1);
+        box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 64.8148px 46.8519px rgba(0, 0, 0, 0.0151852), 0px 38.5185px 25.4815px rgba(0, 0, 0, 0.0121481), 0px 20px 13px rgba(0, 0, 0, 0.01), 0px 8.14815px 6.51852px rgba(0, 0, 0, 0.00785185), 0px 1.85185px 3.14815px rgba(0, 0, 0, 0.00481481);
+        border-radius: calc(18px + (36 - 18) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+      }
+      .services__block{
+        display: flex;
+      }
+    }
+  }
+}
+.main__destinations{
+  margin-top: calc(60px + (120 - 60) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+  padding: 0px 40px;
+  .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .main__destinations-suptitle{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: calc(10px + (18 - 10) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+    line-height: 1.5;
+    color: #5E6282;
+  }
+  .main__destinations-title{
+    font-family: 'Volkhov';
+    font-style: normal;
+    font-weight: 700;
+    font-size: calc(35px + (50 - 35) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+    line-height: 1.28;
+    text-transform: capitalize;
+    color: #14183E;
+    margin-top: 8px;
+  }
+  .main__destinations-list{
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin-top: calc(35px + (60 - 35) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+    .destinations__item{
+      position: relative;
+      background-size: cover;
+      width: calc(210px + (310 - 210) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+      height: calc(350px + (450 - 350) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+      border-radius: 0px 0px 24px 24px;
+    }
+    .rome{
+      background-image: url("img/rome.png");
+    }
+    .london{
+      background-image: url("img/London.png");
+    }
+    .europe{
+      background-image: url("img/Destination.png");
+    }
+    .destinations__card{
+
+      padding: calc(10px + (20 - 10) * ((min(100vw , 1220px) - 768px) / (1220 - 768))) calc(10px + (20 - 10) * ((min(100vw , 1220px) - 768px) / (1220 - 768))) calc(20px + (40 - 20) * ((min(100vw , 1220px) - 768px) / (1220 - 768))) calc(10px + (20 - 10) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 500;
+      font-size: calc(10px + (18 - 10) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+      line-height: 124.5%;
+      color: #5E6282;
+
+      position: absolute;
+      bottom: 0;
+      left:0;
+      width: calc(210px + (310 - 210) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+      background: #FFFFFF;
+      border-radius: 0px 0px 24px 24px;
+      box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 64.8148px 46.8519px rgba(0, 0, 0, 0.0151852), 0px 38.5185px 25.4815px rgba(0, 0, 0, 0.0121481), 0px 20px 13px rgba(0, 0, 0, 0.01), 0px 8.14815px 6.51852px rgba(0, 0, 0, 0.00785185), 0px 1.85185px 3.14815px rgba(0, 0, 0, 0.00481481);
+
+      .destinations__item-title{
+        display: flex;
+        justify-content: space-between;
+      }
+      .destinations__item-duration{
+        display: flex;
+        margin-top: calc(10px + (20 - 10) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+        gap: calc(5px + (10 - 5) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+        img{
+            height: calc(10px + (20 - 10) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+            width: calc(10px + (20 - 10) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+        }
+        .destinations__item-duration-text{
+          font-size: calc(8px + (16 - 8) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+        }
+      }
+    }
+  }
+  .main__destinations-list::before{
+    content:' ';
+    background-image: url("img/Decore.svg");
+    width: 98px;
+    height: 254px;
+    position: absolute;
+    top: 20%;
+    left: 95%;
+  }
+}
+.main__booking{
+  @include calculator(padding-top, 100,180);
+  padding-right:  40px;
+  padding-left: 40px;
+  .main__booking-title{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #5E6282;
+  }
+  .main__booking-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include calculator(padding-right,70,131);
+    @include calculator(margin-top,8,15);
+    .main__booking-content-text{
+     @include calculator(width,400,500);
+      .booking__content-title{
+        @include calculator(font-size,35,50);
+        font-family: 'Volkhov';
+        font-style: normal;
+        font-weight: 700;
+        line-height: 1.28;
+        text-transform: capitalize;
+        color: #14183E;
+      }
+      .booking__content-item{
+        display: flex;
+        align-items: center;
+        @include calculator(margin-top,11,22);
+        @include calculator(gap,10,20);
+        .booking__content-item-title{
+          font-family: 'Poppins';
+          font-style: normal;
+          font-weight: 700;
+          @include calculator(font-size,12,16);
+          line-height: 124.5%;
+          color: #5E6282;
+        }
+        .booking__content-item-subtitle{
+          font-family: 'Poppins';
+          font-style: normal;
+          font-weight: 400;
+          @include calculator(font-size,12,16);
+          line-height: 124.5%;
+          color: #5E6282;
+
+        }
+      }
+    }
+    .main__booking-content-card{
+      position: relative;
+      .main__booking-content-card-item{
+        z-index: 1;
+
+        box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 64.8148px 46.8519px rgba(0, 0, 0, 0.0151852), 0px 38.5185px 25.4815px rgba(0, 0, 0, 0.0121481), 0px 20px 13px rgba(0, 0, 0, 0.01), 0px 8.14815px 6.51852px rgba(0, 0, 0, 0.00785185), 0px 1.85185px 3.14815px rgba(0, 0, 0, 0.00481481);
+        border-radius: 26px;
+        background: #FFFFFF;
+        display: flex;
+        flex-direction: column;
+
+        @include calculator(width,185,370);
+        padding: 20px;
+
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        line-height: 124.5%;
+
+        .booking__content-card-title{
+          @include calculator(font-size,12,18);
+          letter-spacing: 0.015em;
+          color: #080809;
+          margin-top: 26px;
+        }
+        .booking__content-card-subtitle{
+          @include calculator(font-size,12,16);
+          letter-spacing: -0.005em;
+          color: #84829A;
+          margin-top: 10px;
+        }
+        .booking__content-card-icons{
+          margin-top: 20px;
+          img{
+            @include calculator(height,18,36);
+            @include calculator(width,18,36);
+          }
+
+        }
+        .booking__content-card-footer{
+          color: #84829A;
+          margin-top: 30px;
+          display: flex;
+          justify-content: space-between;
+          .card__footer-icon{
+            height: 18.58px;
+            width: 20px;
+            background-image: url("img/heart.svg");
+          }
+        }
+      }
+      .main__booking-content-card-back{
+        position: absolute;
+        top: 0%;
+        left: 15%;
+        @include calculator(width,177,354);
+        @include calculator(height,183,367);
+        background: #59B1E6;
+        opacity: 0.5;
+        filter: blur(75px);
+        z-index: -1;
+      }
+      .main__booking-content-card-hover{
+        @include calculator(width,160,260);
+        display: flex;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        line-height: 124.5%;
+
+        background: #FFFFFF;
+        box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 64.8148px 46.8519px rgba(0, 0, 0, 0.0151852), 0px 38.5185px 25.4815px rgba(0, 0, 0, 0.0121481), 0px 20px 13px rgba(0, 0, 0, 0.01), 0px 8.14815px 6.51852px rgba(0, 0, 0, 0.00785185), 0px 1.85185px 3.14815px rgba(0, 0, 0, 0.00481481);
+        border-radius: 18px;
+        padding: 10px 20px;
+
+        position: absolute;
+        left: 55%;
+        top: 60%;
+
+        img{
+          @include calculator(height,30,50);
+          @include calculator(width,30,50);
+        }
+        .main__booking-content-card-hover-info{
+             margin-left: 10px;
+            p:nth-child(1){
+              color: #84829A;
+            }
+            p:nth-child(2){
+              @include calculator(font-size,14,18);
+              color: #080809;
+              margin-top: 6px;
+            }
+            p:nth-child(3)
+            {
+              margin-top: 14px;
+            }
+            .progress__bar{
+              width: 80%;
+              height: 5px;
+              background: #F5F5F5;
+              border-radius: 30px;
+              margin-top: 8px;
+              .bar{
+                background: #8A79DF;
+                height: 100%;
+                width: 40%;
+                border-radius: 30px;
+              }
+            }
+        }
+      }
+    }
+  }
+}
+
+footer{
+  margin-top: 200px;
 }

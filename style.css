@@ -28,7 +28,7 @@ html, body {
   width: 100%;
   font-style: 100%;
   line-height: 1;
-  font-style: 14px;
+  font-size: 14px;
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -118,23 +118,23 @@ a:link, :visited, :hover {
 }
 .header .header__menu {
   flex: 1 1 auto;
+  display: flex;
+  align-items: center;
   height: 100%;
 }
 .header .header__menu .menu__list {
-  width: 100%;
-  height: 100%;
   display: flex;
   justify-content: flex-end;
-  align-items: center;
-  gap: calc(20px + 30 * (100vw - 768px) / 452);
+  width: 100%;
+  gap: calc(20px + 30 * (min(100vw, 1220px) - 768px) / 452);
 }
 .header .header__action {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: calc(20px + 62 * (100vw - 768px) / 452);
+  margin-left: calc(20px + 62 * (min(100vw, 1220px) - 768px) / 452);
   flex: 0 0 calc(180px + 100 * (100vw - 768px) / 452);
-  gap: calc(20px + 30 * (100vw - 768px) / 452);
+  gap: calc(20px + 30 * (min(100vw, 1220px) - 768px) / 452);
 }
 .header .header__action .button {
   width: calc(70px + 30 * (100vw - 768px) / 452);
@@ -184,7 +184,7 @@ a:link, :visited, :hover {
 }
 @media (max-width: 1220px) {
   .main__content {
-    padding: 0 calc(10px + 40 * (100vw - 768px) / 452);
+    padding: 0 40px;
   }
 }
 .main__content .container {
@@ -260,9 +260,380 @@ a:link, :visited, :hover {
   color: #686D77;
   margin-left: 15px;
 }
-.main__content .main__image img {
+@keyframes fly {
+  50% {
+    transform: translateX(300%) translateY(-300%);
+  }
+  to {
+    transform: translateX(0%) translateY(0%);
+  }
+}
+.main__content .main__image {
+  position: relative;
+}
+.main__content .main__image .main__image-girl {
   width: calc(365px + 309 * (min(100vw, 1220px) - 768px) / 452);
   height: calc(364px + 311 * (min(100vw, 1220px) - 768px) / 452);
+  z-index: 2;
+}
+.main__content .main__image .main__image-plane {
+  width: calc(100px + 67 * (min(100vw, 1220px) - 768px) / 452);
+  height: calc(100px + 50 * (min(100vw, 1220px) - 768px) / 452);
+  position: absolute;
+  top: 0;
+  left: 10%;
+  transition: 0.3s all;
+}
+.main__content .main__image .main__image-plane:hover {
+  animation: fly 3s ease;
+}
+.main__content .main__image .second {
+  left: 70%;
+  z-index: -1;
+}
+
+.main__services .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.main__services .main__services-suptitle {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: calc(10px + 8 * (min(100vw, 1220px) - 768px) / 452);
+  line-height: 1.5;
+  color: #5E6282;
+}
+.main__services .main__services-title {
+  font-family: "Volkhov";
+  font-style: normal;
+  font-weight: 700;
+  font-size: calc(35px + 15 * (min(100vw, 1220px) - 768px) / 452);
+  line-height: 1.28;
+  text-align: center;
+  text-transform: capitalize;
+  color: #14183E;
+  margin-top: 10px;
+}
+.main__services .main__services-list {
+  display: flex;
+  flex-direction: row;
+  gap: calc(19px + 19 * (min(100vw, 1220px) - 768px) / 452);
+}
+.main__services .main__services-list .services__card {
+  position: relative;
+}
+.main__services .main__services-list .services__card .services__block {
+  position: absolute;
+  width: calc(40px + 60 * (min(100vw, 1220px) - 768px) / 452);
+  height: calc(40px + 60 * (min(100vw, 1220px) - 768px) / 452);
+  background: #DF6951;
+  border-radius: calc(15px + 15 * (min(100vw, 1220px) - 768px) / 452) 0px 10px;
+  z-index: -1;
+  top: 85%;
+  left: -20%;
+  display: none;
+}
+.main__services .main__services-list .services__card .services__item {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: calc(10px + 20 * (min(100vw, 1220px) - 768px) / 452) calc(20px + 20 * (min(100vw, 1220px) - 768px) / 452);
+  margin-top: calc(36px + 30 * (min(100vw, 1220px) - 768px) / 452);
+}
+.main__services .main__services-list .services__card .services__item .services__item-img {
+  height: calc(50px + 30 * (min(100vw, 1220px) - 768px) / 452);
+  width: calc(50px + 64 * (min(100vw, 1220px) - 768px) / 452);
+}
+.main__services .main__services-list .services__card .services__item .services__item-title {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: calc(10px + 10 * (min(100vw, 1220px) - 768px) / 452);
+  line-height: 1.35;
+  text-align: center;
+  color: #1E1D4C;
+  margin-top: calc(15px + 15 * (min(100vw, 1220px) - 768px) / 452);
+  width: calc(70px + 120 * (min(100vw, 1220px) - 768px) / 452);
+}
+.main__services .main__services-list .services__card .services__item .services__item-subtitle {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(10px + 6 * (min(100vw, 1220px) - 768px) / 452);
+  line-height: 162%;
+  color: #5E6282;
+  text-align: center;
+  margin-top: calc(7px + 8 * (min(100vw, 1220px) - 768px) / 452);
+}
+.main__services .main__services-list .services__card:hover .services__item {
+  background: #FFFFFF;
+  transform: scale(1.1);
+  box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 64.8148px 46.8519px rgba(0, 0, 0, 0.0151852), 0px 38.5185px 25.4815px rgba(0, 0, 0, 0.0121481), 0px 20px 13px rgba(0, 0, 0, 0.01), 0px 8.14815px 6.51852px rgba(0, 0, 0, 0.00785185), 0px 1.85185px 3.14815px rgba(0, 0, 0, 0.00481481);
+  border-radius: calc(18px + 18 * (min(100vw, 1220px) - 768px) / 452);
+}
+.main__services .main__services-list .services__card:hover .services__block {
+  display: flex;
+}
+
+.main__destinations {
+  margin-top: calc(60px + 60 * (min(100vw, 1220px) - 768px) / 452);
+  padding: 0px 40px;
+}
+.main__destinations .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.main__destinations .main__destinations-suptitle {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: calc(10px + 8 * (min(100vw, 1220px) - 768px) / 452);
+  line-height: 1.5;
+  color: #5E6282;
+}
+.main__destinations .main__destinations-title {
+  font-family: "Volkhov";
+  font-style: normal;
+  font-weight: 700;
+  font-size: calc(35px + 15 * (min(100vw, 1220px) - 768px) / 452);
+  line-height: 1.28;
+  text-transform: capitalize;
+  color: #14183E;
+  margin-top: 8px;
+}
+.main__destinations .main__destinations-list {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-top: calc(35px + 25 * (min(100vw, 1220px) - 768px) / 452);
+}
+.main__destinations .main__destinations-list .destinations__item {
+  position: relative;
+  background-size: cover;
+  width: calc(210px + 100 * (min(100vw, 1220px) - 768px) / 452);
+  height: calc(350px + 100 * (min(100vw, 1220px) - 768px) / 452);
+  border-radius: 0px 0px 24px 24px;
+}
+.main__destinations .main__destinations-list .rome {
+  background-image: url("img/rome.png");
+}
+.main__destinations .main__destinations-list .london {
+  background-image: url("img/London.png");
+}
+.main__destinations .main__destinations-list .europe {
+  background-image: url("img/Destination.png");
+}
+.main__destinations .main__destinations-list .destinations__card {
+  padding: calc(10px + 10 * (min(100vw, 1220px) - 768px) / 452) calc(10px + 10 * (min(100vw, 1220px) - 768px) / 452) calc(20px + 20 * (min(100vw, 1220px) - 768px) / 452) calc(10px + 10 * (min(100vw, 1220px) - 768px) / 452);
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: calc(10px + 8 * (min(100vw, 1220px) - 768px) / 452);
+  line-height: 124.5%;
+  color: #5E6282;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: calc(210px + 100 * (min(100vw, 1220px) - 768px) / 452);
+  background: #FFFFFF;
+  border-radius: 0px 0px 24px 24px;
+  box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 64.8148px 46.8519px rgba(0, 0, 0, 0.0151852), 0px 38.5185px 25.4815px rgba(0, 0, 0, 0.0121481), 0px 20px 13px rgba(0, 0, 0, 0.01), 0px 8.14815px 6.51852px rgba(0, 0, 0, 0.00785185), 0px 1.85185px 3.14815px rgba(0, 0, 0, 0.00481481);
+}
+.main__destinations .main__destinations-list .destinations__card .destinations__item-title {
+  display: flex;
+  justify-content: space-between;
+}
+.main__destinations .main__destinations-list .destinations__card .destinations__item-duration {
+  display: flex;
+  margin-top: calc(10px + 10 * (min(100vw, 1220px) - 768px) / 452);
+  gap: calc(5px + 5 * (min(100vw, 1220px) - 768px) / 452);
+}
+.main__destinations .main__destinations-list .destinations__card .destinations__item-duration img {
+  height: calc(10px + 10 * (min(100vw, 1220px) - 768px) / 452);
+  width: calc(10px + 10 * (min(100vw, 1220px) - 768px) / 452);
+}
+.main__destinations .main__destinations-list .destinations__card .destinations__item-duration .destinations__item-duration-text {
+  font-size: calc(8px + 8 * (min(100vw, 1220px) - 768px) / 452);
+}
+.main__destinations .main__destinations-list::before {
+  content: " ";
+  background-image: url("img/Decore.svg");
+  width: 98px;
+  height: 254px;
+  position: absolute;
+  top: 20%;
+  left: 95%;
+}
+
+.main__booking {
+  padding-top: calc(100px + 80 * (min(100vw, 1220px) - 768px) / 452);
+  padding-right: 40px;
+  padding-left: 40px;
+}
+.main__booking .main__booking-title {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.5;
+  color: #5E6282;
+}
+.main__booking .main__booking-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: calc(70px + 61 * (min(100vw, 1220px) - 768px) / 452);
+  margin-top: calc(8px + 7 * (min(100vw, 1220px) - 768px) / 452);
+}
+.main__booking .main__booking-content .main__booking-content-text {
+  width: calc(400px + 100 * (min(100vw, 1220px) - 768px) / 452);
+}
+.main__booking .main__booking-content .main__booking-content-text .booking__content-title {
+  font-size: calc(35px + 15 * (min(100vw, 1220px) - 768px) / 452);
+  font-family: "Volkhov";
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.28;
+  text-transform: capitalize;
+  color: #14183E;
+}
+.main__booking .main__booking-content .main__booking-content-text .booking__content-item {
+  display: flex;
+  align-items: center;
+  margin-top: calc(11px + 11 * (min(100vw, 1220px) - 768px) / 452);
+  gap: calc(10px + 10 * (min(100vw, 1220px) - 768px) / 452);
+}
+.main__booking .main__booking-content .main__booking-content-text .booking__content-item .booking__content-item-title {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: calc(12px + 4 * (min(100vw, 1220px) - 768px) / 452);
+  line-height: 124.5%;
+  color: #5E6282;
+}
+.main__booking .main__booking-content .main__booking-content-text .booking__content-item .booking__content-item-subtitle {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: calc(12px + 4 * (min(100vw, 1220px) - 768px) / 452);
+  line-height: 124.5%;
+  color: #5E6282;
+}
+.main__booking .main__booking-content .main__booking-content-card {
+  position: relative;
+}
+.main__booking .main__booking-content .main__booking-content-card .main__booking-content-card-item {
+  z-index: 1;
+  box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 64.8148px 46.8519px rgba(0, 0, 0, 0.0151852), 0px 38.5185px 25.4815px rgba(0, 0, 0, 0.0121481), 0px 20px 13px rgba(0, 0, 0, 0.01), 0px 8.14815px 6.51852px rgba(0, 0, 0, 0.00785185), 0px 1.85185px 3.14815px rgba(0, 0, 0, 0.00481481);
+  border-radius: 26px;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  width: calc(185px + 185 * (min(100vw, 1220px) - 768px) / 452);
+  padding: 20px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  line-height: 124.5%;
+}
+.main__booking .main__booking-content .main__booking-content-card .main__booking-content-card-item .booking__content-card-title {
+  font-size: calc(12px + 6 * (min(100vw, 1220px) - 768px) / 452);
+  letter-spacing: 0.015em;
+  color: #080809;
+  margin-top: 26px;
+}
+.main__booking .main__booking-content .main__booking-content-card .main__booking-content-card-item .booking__content-card-subtitle {
+  font-size: calc(12px + 4 * (min(100vw, 1220px) - 768px) / 452);
+  letter-spacing: -0.005em;
+  color: #84829A;
+  margin-top: 10px;
+}
+.main__booking .main__booking-content .main__booking-content-card .main__booking-content-card-item .booking__content-card-icons {
+  margin-top: 20px;
+}
+.main__booking .main__booking-content .main__booking-content-card .main__booking-content-card-item .booking__content-card-icons img {
+  height: calc(18px + 18 * (min(100vw, 1220px) - 768px) / 452);
+  width: calc(18px + 18 * (min(100vw, 1220px) - 768px) / 452);
+}
+.main__booking .main__booking-content .main__booking-content-card .main__booking-content-card-item .booking__content-card-footer {
+  color: #84829A;
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.main__booking .main__booking-content .main__booking-content-card .main__booking-content-card-item .booking__content-card-footer .card__footer-icon {
+  height: 18.58px;
+  width: 20px;
+  background-image: url("img/heart.svg");
+}
+.main__booking .main__booking-content .main__booking-content-card .main__booking-content-card-back {
+  position: absolute;
+  top: 0%;
+  left: 15%;
+  width: calc(177px + 177 * (min(100vw, 1220px) - 768px) / 452);
+  height: calc(183px + 184 * (min(100vw, 1220px) - 768px) / 452);
+  background: #59B1E6;
+  opacity: 0.5;
+  filter: blur(75px);
+  z-index: -1;
+}
+.main__booking .main__booking-content .main__booking-content-card .main__booking-content-card-hover {
+  width: calc(160px + 100 * (min(100vw, 1220px) - 768px) / 452);
+  display: flex;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  line-height: 124.5%;
+  background: #FFFFFF;
+  box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 64.8148px 46.8519px rgba(0, 0, 0, 0.0151852), 0px 38.5185px 25.4815px rgba(0, 0, 0, 0.0121481), 0px 20px 13px rgba(0, 0, 0, 0.01), 0px 8.14815px 6.51852px rgba(0, 0, 0, 0.00785185), 0px 1.85185px 3.14815px rgba(0, 0, 0, 0.00481481);
+  border-radius: 18px;
+  padding: 10px 20px;
+  position: absolute;
+  left: 55%;
+  top: 60%;
+}
+.main__booking .main__booking-content .main__booking-content-card .main__booking-content-card-hover img {
+  height: calc(30px + 20 * (min(100vw, 1220px) - 768px) / 452);
+  width: calc(30px + 20 * (min(100vw, 1220px) - 768px) / 452);
+}
+.main__booking .main__booking-content .main__booking-content-card .main__booking-content-card-hover .main__booking-content-card-hover-info {
+  margin-left: 10px;
+}
+.main__booking .main__booking-content .main__booking-content-card .main__booking-content-card-hover .main__booking-content-card-hover-info p:nth-child(1) {
+  color: #84829A;
+}
+.main__booking .main__booking-content .main__booking-content-card .main__booking-content-card-hover .main__booking-content-card-hover-info p:nth-child(2) {
+  font-size: calc(14px + 4 * (min(100vw, 1220px) - 768px) / 452);
+  color: #080809;
+  margin-top: 6px;
+}
+.main__booking .main__booking-content .main__booking-content-card .main__booking-content-card-hover .main__booking-content-card-hover-info p:nth-child(3) {
+  margin-top: 14px;
+}
+.main__booking .main__booking-content .main__booking-content-card .main__booking-content-card-hover .main__booking-content-card-hover-info .progress__bar {
+  width: 80%;
+  height: 5px;
+  background: #F5F5F5;
+  border-radius: 30px;
+  margin-top: 8px;
+}
+.main__booking .main__booking-content .main__booking-content-card .main__booking-content-card-hover .main__booking-content-card-hover-info .progress__bar .bar {
+  background: #8A79DF;
+  height: 100%;
+  width: 40%;
+  border-radius: 30px;
+}
+
+footer {
+  margin-top: 200px;
 }
 
 /*# sourceMappingURL=style.css.map */
