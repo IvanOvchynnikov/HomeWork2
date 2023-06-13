@@ -201,6 +201,9 @@ a:link,:visited,:hover{
       }
       .main-play{
         background: #DF6951;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         box-shadow: 0px 15px 30px rgba(223, 105, 81, 0.3);
         border-radius: 50%;
         width: calc(32px + (52 - 32) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
