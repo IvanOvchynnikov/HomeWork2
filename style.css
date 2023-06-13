@@ -165,7 +165,14 @@ a:link, :visited, :hover {
 .header .header__action .button-border {
   border: none;
 }
-.header .language-switcher {
+.header .header__extensions {
+  display: flex;
+  gap: 10px;
+}
+.header .header__extensions img {
+  display: none;
+}
+.header .header__extensions .language-switcher {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -173,22 +180,22 @@ a:link, :visited, :hover {
   gap: 10px;
   position: relative;
 }
-.header .language-switcher .switcher {
+.header .header__extensions .language-switcher .switcher {
   display: flex;
   align-items: center;
 }
-.header .language-switcher .switcher:before {
+.header .header__extensions .language-switcher .switcher:before {
   content: "EN";
   margin-right: 10px;
 }
-.header .language-switcher .language__options {
+.header .header__extensions .language-switcher .language__options {
   display: none;
   box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
 }
-.header .language-switcher .language__options li {
+.header .header__extensions .language-switcher .language__options li {
   padding: 5px 0;
 }
-.header .language-switcher:hover .language__options {
+.header .header__extensions .language-switcher:hover .language__options {
   display: flex;
   flex-direction: column;
   padding: 5px 10px;
@@ -928,6 +935,9 @@ footer .container .footer__discover .footer__apps img {
   }
   .header .container .menu .header__menu {
     display: none;
+  }
+  .header .container .header__extensions img {
+    display: flex;
   }
   .header .container .header__menu-mobile {
     display: flex;
