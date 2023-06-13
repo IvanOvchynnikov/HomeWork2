@@ -1326,7 +1326,6 @@ footer .container .footer__discover .footer__apps img {
     line-height: 124.5%;
   }
   footer .container .footer__discover {
-    margin: 0 auto;
     padding: 58px 0;
     display: flex;
     flex-direction: column;
