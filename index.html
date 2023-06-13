@@ -9,18 +9,20 @@
 <div class="wrapper">
     <header class="header">
         <div class="container">
-            <a href="" class="header__logo"><img src="img/logo.svg"></a>
-            <nav class="header__menu menu">
-                <ul class="menu__list">
-                    <li class="menu__item"><a href="menu__link">Desitnations</a></li>
-                    <li class="menu__item"><a href="menu__link">Hotels</a></li>
-                    <li class="menu__item"><a href="menu__link">Flights</a></li>
-                    <li class="menu__item"><a href="menu__link">Bookings</a></li>
-                </ul>
-            </nav>
-            <div class="header__action">
-                <button class="button button-border">Login</button>
-                <button class="button">Sign up</button>
+            <div class="menu">
+                <a href="" class="header__logo"><img src="img/logo.svg"></a>
+                <nav class="header__menu">
+                    <ul class="menu__list">
+                        <li class="menu__item"><a href="menu__link">Desitnations</a></li>
+                        <li class="menu__item"><a href="menu__link">Hotels</a></li>
+                        <li class="menu__item"><a href="menu__link">Flights</a></li>
+                        <li class="menu__item"><a href="menu__link">Bookings</a></li>
+                    </ul>
+                </nav>
+                <div class="header__action">
+                    <button class="button button-border">Login</button>
+                    <button class="button">Sign up</button>
+                </div>
                 <div class="language-switcher">
                     <a href="" class="switcher" ><svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0.5 0.5L5 5L9.5 0.5" stroke="#212832"/>
@@ -32,6 +34,14 @@
                     </ul>
                 </div>
             </div>
+            <nav class="header__menu-mobile">
+                <ul class="menu-mobile__list">
+                    <li class="menu-mobile__item"><a href="menu__link">Desitnations</a></li>
+                    <li class="menu-mobile__item"><a href="menu__link">Hotels</a></li>
+                    <li class="menu-mobile__item"><a href="menu__link">Flights</a></li>
+                    <li class="menu-mobile__item"><a href="menu__link">Bookings</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
     <main class="main">
@@ -43,12 +53,14 @@
                     <div class="main__about-subtitle">Built Wicket longer admire do barton vanity itself do in it. Preferred to sportsmen it engrossed listening. Park gate sell they west hard for the.</div>
                     <div class="main__about-actions">
                         <button class="main-find_out">Find out more</button>
-                        <button class="main-play">
-                            <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 6.5L0.749999 12.9952L0.75 0.00480889L12 6.5Z" fill="white"/>
-                        </svg>
-                        </button>
-                        <div class="main-play__title">Play Demo</div>
+                        <div class="main_play">
+                            <button class="main-play">
+                                <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 6.5L0.749999 12.9952L0.75 0.00480889L12 6.5Z" fill="white"/>
+                                </svg>
+                            </button>
+                            <div class="main-play__title">Play Demo</div>
+                        </div>
                     </div>
                 </div>
                 <div class="main__image">
@@ -80,7 +92,7 @@
                             <div class="services__item-subtitle">Engrossed listening. Park gate sell they west hard for the.</div>
                         </div>
                     </div>
-                    <div class="services__card">
+                    <div class="services__card  local_events">
                         <div class="services__block"></div>
                         <div class="services__item">
                             <img src="img/micro.svg" class="services__item-img">
@@ -88,10 +100,8 @@
                             <div class="services__item-subtitle">Barton vanity itself do in it. Preferd to men it engrossed listening. </div>
                         </div>
                     </div>
-                    <div class="services__card">
-                        <label for="test">
-                            <div class="services__block"></div>
-                        </label>
+                    <div class="services__card customization">
+                        <div class="services__block"></div>
                         <div class="services__item" id="test">
                             <img src="img/hexagon.svg" class="services__item-img">
                             <div class="services__item-title">Customization</div>
@@ -188,7 +198,7 @@
                             <div class="main__booking-content-card-hover-info">
                                 <p>Ongoing</p>
                                 <p>Trip to rome</p>
-                                <p>40% completed</p>
+                                <p><span class="percentage">40%</span> completed</p>
                                 <div class="progress__bar">
                                     <div class="bar">
                                     </div>
@@ -217,10 +227,88 @@
                 </div>
             </div>
         </section>
+        <section class="main__comment">
+            <div class="container">
+                <div class="main__comment-text">
+                    <p>Testimonials</p>
+                    <p>What people say
+                        about Us.</p>
+                </div>
+                <div class="main__comment-info">
+                    <img src="img/boy.png">
+                    <p>"On the Windows talking painted pasture yet its express parties use. Sure last upon he same as knew next. Of believed or diverted no."</p>
+                    <p>Mike taylor</p>
+                    <p>Lahore, Pakistan</p>
 
+                </div>
+            </div>
+        </section>
+        <section class="main__companies">
+            <div class="container">
+                <div class="main__companies-title">Top Selling</div>
+                <div class="img__container"><img src="img/axon.png" alt=""></div>
+                <div class="img__container"> <img src="img/jetstar.png" alt=""></div>
+                <div class="img__container"> <img src="img/expedia.png" alt=""></div>
+                <div class="img__container"> <img src="img/qantas.png" alt=""></div>
+                <div class="img__container"> <img src="img/aliatas.png" alt=""></div>
+            </div>
+        </section>
+        <section class="main__form">
+            <form>
+            <div class="container">
+                    <p>Subscribe to get information, latest news and other
+                        interesting offers about Cobham</p>
+                    <div class="main__form-input">
+                        <input type="text" placeholder="Your email" required>
+                        <button class="main__form-input-subscribe" type="submit">Subscribe</button>
+                    </div>
+                    <img src="img/tele_circle.png" class="tele__circle">
+            </div>
+            </form>
+
+        </section>
     </main>
     <footer class="footer">
-        Footer
+       <div class="container">
+           <div class="footer__logo">
+               <p>Jadoo.</p>
+               <p>Book your trip in minute, get full
+                   Control for much longer.
+               </p>
+           </div>
+           <div class="footer__item">
+               <p class="item__title">Company</p>
+               <a href="#"> <p>About</p></a>
+               <a href="#"> <p>Careers</p></a>
+               <a href="#"> <p>Mobile</p></a>
+           </div>
+           <div class="footer__item">
+               <p class="item__title">Contact</p>
+               <a href="#"> <p>Help/FAQ</p></a>
+               <a href="#"> <p>Press</p></a>
+               <a href="#"> <p>Affiliates</p></a>
+           </div>
+           <div class="footer__item">
+               <p class="item__title">More</p>
+               <a href="#">Airline fees</a>
+               <a href="#">Airline</a>
+               <a href="#">Low fare tips</a>
+           </div>
+           <div class="footer__discover">
+               <div class="footer__socials">
+                   <a href="https://www.facebook.com/" target="_blank"><img src="img/facebook.svg"></a>
+                   <a href="https://www.instagram.com/" target="_blank"><img src="img/instagram.svg"></a>
+                   <a href="https://www.twitter.com/" target="_blank"><img src="img/twitter.svg"></a>
+                   <a href="https://www.youtube.com/" target="_blank"><img src="img/youtube.svg"></a>
+               </div>
+               <p>Discover our app</p>
+               <div class="footer__apps">
+                   <a href="https://play.google.com/store/" target="_blank"><img src="img/Google-Play.png"></a>
+                   <a href="https://www.apple.com/app-store/" target="_blank"><img src="img/AppStore.png"></a>
+               </div>
+           </div>
+       </div>
+        <h6>All rights reserved@jadoo.co</h6>
     </footer>
 </div>
 <script src="script.js"></script>

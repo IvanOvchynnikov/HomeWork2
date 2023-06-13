@@ -1,6 +1,7 @@
 @import "null.scss";
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=Poppins:wght@400;500;600;700&family=Roboto&family=Volkhov:wght@700&display=swap');
 
+
 @font-face {
   font-family: 'Google Sans';
   src: url("/fonts/ProductSans-Medium.woff");
@@ -8,7 +9,17 @@
 
 @mixin calculator($property,$min_value,$max_value){
   #{$property}: calc($min_value * 1px + ($max_value - $min_value) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+}
 
+@mixin calculator_mobile($property,$min_value,$max_value){
+  #{$property}: calc($min_value * 1px + ($max_value - $min_value) * ((min(100vw , 768px) - 240px) / (768 - 240)));
+}
+
+body{
+  background: url("img/background_mark.png");
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-position: right;
 }
 
 a:link,:visited,:hover{
@@ -40,7 +51,10 @@ a:link,:visited,:hover{
   @media (max-width: 1220px) {
     padding: calc(10px + (50 - 10) * ((100vw - 768px) / (1220 - 768))) calc(10px + (50 - 10) * ((100vw - 768px) / (1220 - 768)));
   }
-  .container{
+  .header__menu-mobile{
+    display: none;
+  }
+  .menu{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -51,12 +65,20 @@ a:link,:visited,:hover{
     display: flex;
     align-items: center;
     height: 100%;
-
     .menu__list {
       display: flex;
       justify-content: flex-end;
       width: 100%;
-      gap: calc(20px + (50 - 20) * ((min(100vw , 1220px) - 768px) / (1220 - 768)))
+      gap: calc(20px + (50 - 20) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
+      li{
+        transition: 0.3s all;
+      }
+      li:hover{
+        transform: scale(1.1);
+        a{
+          color: #3b336e;
+        }
+      }
     }
   }
   .header__action {
@@ -76,38 +98,37 @@ a:link,:visited,:hover{
     .button-border {
       border: none;
     }
-    .language-switcher {
+  }
+  .language-switcher{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    .switcher{
       display: flex;
-      justify-content: center;
       align-items: center;
-      flex-direction: column;
-      gap: 10px;
-      position: relative;
-      .switcher{
-        display: flex;
-        align-items: center;
-        &:before{
-          content:"EN";
-          margin-right: 10px;
-        }
+      &:before{
+        content:"EN";
+        margin-right: 10px;
       }
+    }
+    .language__options {
+      display: none;
+      box-shadow: 0px 1px 10px rgba(0,0,0,0.2);
+      li{
+        padding: 5px 0;
+      }
+    }
+    &:hover {
       .language__options {
-        display: none;
-        box-shadow: 0px 1px 10px rgba(0,0,0,0.2);
-        li{
-          padding: 5px 0;
-        }
-
-      }
-      &:hover {
-        .language__options {
-          display: flex;
-          flex-direction: column;
-          padding: 5px 10px;
-          position: absolute;
-          top: 25px;
-          left: -10px;
-        }
+        display: flex;
+        flex-direction: column;
+        padding: 5px 10px;
+        position: absolute;
+        top: 25px;
+        left: -10px;
       }
     }
   }
@@ -360,9 +381,7 @@ a:link,:visited,:hover{
       background-image: url("img/Destination.png");
     }
     .destinations__card{
-
       padding: calc(10px + (20 - 10) * ((min(100vw , 1220px) - 768px) / (1220 - 768))) calc(10px + (20 - 10) * ((min(100vw , 1220px) - 768px) / (1220 - 768))) calc(20px + (40 - 20) * ((min(100vw , 1220px) - 768px) / (1220 - 768))) calc(10px + (20 - 10) * ((min(100vw , 1220px) - 768px) / (1220 - 768)));
-
       font-family: 'Poppins';
       font-style: normal;
       font-weight: 500;
@@ -532,7 +551,7 @@ a:link,:visited,:hover{
         background: #FFFFFF;
         box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 64.8148px 46.8519px rgba(0, 0, 0, 0.0151852), 0px 38.5185px 25.4815px rgba(0, 0, 0, 0.0121481), 0px 20px 13px rgba(0, 0, 0, 0.01), 0px 8.14815px 6.51852px rgba(0, 0, 0, 0.00785185), 0px 1.85185px 3.14815px rgba(0, 0, 0, 0.00481481);
         border-radius: 18px;
-        padding: 10px 20px;
+        padding: 20px 20px;
 
         position: absolute;
         left: 55%;
@@ -555,6 +574,9 @@ a:link,:visited,:hover{
             p:nth-child(3)
             {
               margin-top: 14px;
+              .percentage{
+                color: #8A79DF;
+              }
             }
             .progress__bar{
               width: 80%;
@@ -574,7 +596,716 @@ a:link,:visited,:hover{
     }
   }
 }
+.main__comment{
+  font-family: 'Poppins';
+  font-style: normal;
+  padding-right:  40px;
+  padding-left: 40px;
+  @include calculator(padding-top,100,200);
+  .container{
+    display: flex;
+    justify-content: space-between;
+    .main__comment-text{
+      @include calculator(width,251,450);
+      p:nth-child(1){
+        font-weight: 600;
+        @include calculator(font-size,10,18);
+        line-height: 1.5;
+        color: #5E6282;
+      }
+      p:nth-child(2){
+        font-weight: 600;
+        @include calculator(font-size,35,50);
+        line-height: 1.06;
+        text-transform: capitalize;
+        color: #14183E;
+        margin-top: 8px;
+      }
+    }
+    .main__comment-info{
+      background: #FFFFFF;
+      box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 64.8148px 46.8519px rgba(0, 0, 0, 0.0151852), 0px 38.5185px 25.4815px rgba(0, 0, 0, 0.0121481), 0px 20px 13px rgba(0, 0, 0, 0.01), 0px 8.14815px 6.51852px rgba(0, 0, 0, 0.00785185), 0px 1.85185px 3.14815px rgba(0, 0, 0, 0.00481481);
+      border-radius: 10px;
+      @include calculator(width,302,502);
+      @include calculator(padding,15,30);
+      @include calculator(padding-left,35,70);
+      position: relative;
+      p:nth-of-type(1){
+        font-weight: 500;
+        @include calculator(font-size,10,16);
+        line-height: 2;
+        color: #5E6282;
+      }
+      p:nth-of-type(2){
+        font-weight: 600;
+        @include calculator(font-size,10,18);
+        line-height: 1.5;
+        color: #5E6282;
+        @include calculator(margin-top,17,34);
+      }
+      p:nth-of-type(3){
+        font-weight: 500;
+        @include calculator(font-size,10,14);
+        line-height: 1.5;
+        color: #5E6282;
+        margin-top: 5px;
+      }
+      img{
+        position: absolute;
+        top: -15%;
+        left: -5%;
+        @include calculator(width,42,68);
+        @include calculator(height,42,68);
+      }
+    }
+  }
+}
+.main__companies{
+  padding: 0px 40px;
+  @include calculator(padding-top,85,170);
+  .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .main__companies-title{
+      display: none;
+    }
+    .img__container{
+      @include calculator(padding,15,30);
+      img{
+        filter: grayscale(100%);
+        @include calculator(max-height,80,160);
+        @include calculator(max-width,80,160);
+      }
+    }
+    .img__container:hover{
+      transform: scale(1.1);
+      background: #FFFFFF;
+      box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.02), 0px 64.8148px 46.8519px rgba(0, 0, 0, 0.0151852), 0px 38.5185px 25.4815px rgba(0, 0, 0, 0.0121481), 0px 20px 13px rgba(0, 0, 0, 0.01), 0px 8.14815px 6.51852px rgba(0, 0, 0, 0.00785185), 0px 1.85185px 3.14815px rgba(0, 0, 0, 0.00481481);
+      border-radius: 10px;
+      img{
+        filter: grayscale(0%);
+      }
+    }
+  }
+}
+
+.main__form{
+  @include calculator(padding-top,60,120);
+  .container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+    @include calculator(padding-top,40,80);
+    @include calculator(padding-bottom,60,120);
+    position: relative;
+
+    background: url("img/background_form.png") no-repeat;
+    @include calculator(width,585,1170);
+
+    .tele__circle{
+      position: absolute;
+      @include calculator(width,35,70);
+      @include calculator(height,35,70);
+      top: -5%;
+      left: 95%;
+    }
+    p:nth-child(1){
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 600;
+      @include calculator(font-size,20,33);
+      line-height: 164%;
+      color: #5E6282;
+      text-align: center;
+      @include calculator(width,425,850);
+    }
+    .main__form-input{
+      @include calculator(margin-top,38,76);
+      display: flex;
+      input{
+        @include calculator(width,210,421);
+        background: #FFFFFF;
+        border-radius: 10px;
+        padding-left: 20px;
+        &::placeholder{
+          font-family: 'Montserrat';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 1.5;
+          color: #39425D;
+        }
+      }
+      .main__form-input-subscribe{
+        background: linear-gradient(180deg, #FF946D 0%, #FF7D68 100%);
+        border-radius: 10px;
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 17px;
+        line-height: 1.5;
+        text-align: center;
+        color: #FFFFFF;
+        padding: 20px 50px;
+        @include calculator(margin-left,20,40);
+      }
+    }
+  }
+
+}
 
 footer{
-  margin-top: 200px;
+  @include calculator(padding-top,80,160);
+  @include calculator(padding-bottom,40,80);
+  h6{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    @include calculator(font-size,10,14);
+    line-height: 124.5%;
+    text-align: center;
+    color: #5E6282;
+
+  }
+  .container{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px 84px 40px;
+    @include calculator(padding-bottom,42,84);
+    .footer__logo{
+      @include calculator(width,140,207);
+      p:nth-child(1){
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        @include calculator(font-size,30,44);
+        line-height: 1.5;
+        color: #181E4B;
+        -webkit-text-stroke: 1px #000000;;
+      }
+      p:nth-child(2){
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 124.5%;
+        color: #5E6282;
+      }
+    }
+    .footer__item{
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      a{
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        @include calculator(font-size,12,18);
+        color: #5E6282;
+      }
+      .item__title{
+        font-family: 'Poppins';
+        font-weight: 700;
+        @include calculator(font-size,13,21);
+        color: #080809;
+      }
+    }
+    .footer__discover{
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .footer__socials{
+        display: flex;
+        gap: 20px;
+      }
+      p:nth-child(2){
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        @include calculator(font-size,12,20);
+        line-height: 124.5%;
+        letter-spacing: 0.005em;
+        color: #5E6282;
+        @include calculator(margin-top,17,35);
+      }
+      .footer__apps{
+        display: flex;
+        align-items: center;
+        img{
+          @include calculator(height,24.5,35);
+          @include calculator(width,75,107);
+        }
+        gap: 10px;
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+//MOBILE VERSION
+
+@media(max-width: 768px){
+  body{
+    background: none;
+  }
+  .header{
+    padding: 20px;
+    background: #FFF1DA;
+   .container{
+      height: 100%;
+      flex-direction: column;
+
+     .menu{
+       .header__logo{
+         flex: 1 1 auto;
+       }
+       .header__action{
+         display: none;
+       }
+       .header__menu{
+         display: none;
+       }
+     }
+     .header__menu-mobile{
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       margin-top: 50px;
+       .menu-mobile__list{
+         display: flex;
+         flex-direction: column;
+         @include calculator_mobile(gap,20,30);
+
+         font-family: 'Poppins';
+         font-style: normal;
+         font-weight: 400;
+         @include  calculator_mobile(font-size,20,30);
+         line-height: 150%;
+         text-align: center;
+         letter-spacing: 0.2px;
+         color: #737373;
+       }
+     }
+   }
+  }
+  .main__content{
+    padding-top: 74px;
+    .main__about{
+      .main__about-suptitle{
+        display: none;
+      }
+      .main__about-subtitle{
+        display: none;
+      }
+    }
+    .main__image{
+      display: none;
+    }
+    .container{
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      .main__about-title{
+        position: relative;
+        font-family: 'Volkhov';
+        font-style: normal;
+        font-weight: 700;
+        @include  calculator_mobile(font-size,24,48);
+        line-height: 185%;
+        letter-spacing: -0.04em;
+        color: #181E4B;
+        text-align: center;
+        &::before{
+          content:'';
+          background: url("img/plane.svg");
+          background-size: 100%;
+          position: absolute;
+          top: -12%;
+          left: -10%;
+          @include calculator_mobile(width,50,100);
+          @include calculator_mobile(height,50,100);
+        }
+      }
+      .main__about-actions{
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        @include calculator_mobile(gap,20,30);
+        .main-find_out{
+          background: #F1A501;
+          box-shadow: 0px 20px 35px rgba(241, 165, 1, 0.15);
+          border-radius: 10px;
+          @include calculator_mobile(width,100,170);
+          @include calculator_mobile(height,50,60);
+        }
+        .main_play{
+          display: flex;
+          align-items: center;
+          margin-top: 20px;
+          .main-play{
+            @include calculator_mobile(width,40,52);
+            @include calculator_mobile(height,40,52);
+          }
+          .main-play__title{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 17px;
+            line-height: 1.5;
+            color: #686D77;
+          }
+        }
+      }
+    }
+  }
+  .main__services{
+    padding: 120px 20px 20px 20px;
+    .container{
+      flex-direction: column;
+      .main__services-suptitle{
+        font-size: 20px;
+        line-height: 1.5;
+      }
+      .main__services-title{
+        font-size: 40px;
+        line-height: 1.25;
+        margin-top: 25px;
+      }
+      .main__services-list{
+        flex-direction: column;
+        align-items: center;
+      }
+      .services__card{
+        border-radius: 36px;
+        &.local_events{
+          display: none;
+        }
+        &.customization{
+            display: none;
+        }
+        .services__block{
+          background: #DF6951;
+          border-radius: 30px 0px 10px;
+          @include calculator_mobile(width,50,100);
+          @include calculator_mobile(height,50,100);
+        }
+        .services__item{
+          margin-top: 50px;
+          padding: 30px;
+          display: flex;
+          flex-direction: column;
+          @include calculator_mobile(width,200,270);
+          .services__item-img{
+            @include calculator_mobile(width,50,100);
+            @include calculator_mobile(height,35,70);
+          }
+          .services__item-title{
+            width: 100%;
+            margin-top: 30px;
+            @include  calculator_mobile(font-size,12,20);
+            line-height: 1.35;
+            text-align: center;
+          }
+          .services__item-subtitle{
+            margin-top: 15px;
+            @include  calculator_mobile(font-size,10,16);
+            line-height: 1.62;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+  .main__destinations{
+    padding: 20px;
+    .container{
+        flex-direction: column;
+       align-items: center;
+      .main__destinations-suptitle{
+        @include  calculator_mobile(font-size,12,25);
+        line-height: 1.5;
+        text-align: center;
+      }
+      .main__destinations-title{
+        @include  calculator_mobile(font-size,20,45);
+        line-height: 1.25;
+        text-align: center;
+      }
+      .main__destinations-list{
+        flex-direction: column;
+        align-items: center;
+        gap: 50px;
+        &::before{
+          display: none;
+        }
+        .destinations__item{
+          width: 80%;
+          min-height: 450px;
+        }
+        .destinations__card{
+          width: 100%;
+         height: 100px;
+          padding: 20px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          .destinations__item-title{
+            @include calculator_mobile(font-size,10,16);
+            line-height: 124.5%;
+          }
+          .destinations__item-duration{
+            img{
+              @include calculator_mobile(width,8,16);
+              @include calculator_mobile(height,8,16);
+            }
+          }
+          .destinations__item-duration-text{
+            @include calculator_mobile(font-size,10,16);
+            line-height: 124.5%;
+          }
+        }
+      }
+    }
+  }
+  .main__booking{
+    .container{
+      padding-top: 80px;
+      .main__booking-title{
+        display: none;
+      }
+      .main__booking-content{
+        flex-direction: column;
+        align-items: center;
+        padding: 0px;
+        .booking__content-title{
+          @include calculator_mobile(font-size,20,40);
+          line-height: 1.25;
+          text-align: center;
+        }
+        .main__booking-content-text{
+          width: 100%;
+          .booking__content-item{
+            margin-top: 30px;
+            width: 100%;
+            display: flex;
+            gap: 10px;
+          }
+        }
+        .main__booking-content-card{
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-top: 50px;
+          .main__booking-content-card-hover{
+            display: none;
+          }
+          .main__booking-content-card-item{
+            width: 80%;
+            padding: 20px;
+            .booking__content-card-title{
+              @include calculator_mobile(font-size,12,18);
+              line-height: 124.5%;
+            }
+            .booking__content-card-subtitle{
+              @include calculator_mobile(font-size,10,16);
+              line-height: 124.5%;
+            }
+            .booking__content-card-icons{
+              img{
+                @include calculator_mobile(height,20,30);
+                @include calculator_mobile(width,20,30);
+                margin-left: 5px;
+              }
+            }
+            .booking__content-card-footer{
+              display: flex;
+              align-items: center;
+              @include calculator_mobile(font-size,10,16);
+              line-height: 124.5%;
+            }
+          }
+        }
+      }
+    }
+  }
+  .main__comment{
+    padding: 0;
+    padding-top: 120px;
+    padding-right: 20px;
+    padding-left: 20px;
+    .container{
+      flex-direction: column;
+      align-items: center;
+      .main__comment-text{
+        width: 100%;
+        p:nth-child(1){
+          @include calculator_mobile(font-size,12,20);
+          line-height: 1.5;
+          text-align: center;
+        }
+        p:nth-child(2){
+          @include calculator_mobile(font-size,20,40);
+          line-height: 1.25;
+          text-align: center;
+        }
+      }
+      .main__comment-info{
+        margin-top: 60px;
+        padding: 20px;
+        width:80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        img{
+          position: static;
+          height: 68px;
+          width: 68px;
+        }
+        p:nth-of-type(1){
+          @include calculator_mobile(font-size,10,16);
+          line-height: 1.2;
+          margin-top: 10px;
+        }
+        p:nth-of-type(2){
+          @include calculator_mobile(font-size,12,18);
+          line-height: 1.5;
+          margin-top: 10px;
+        }
+        p:nth-of-type(3){
+          @include calculator_mobile(font-size,10,14);
+          line-height: 1.5;
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+  .main__companies{
+    padding: 0;
+    padding-top: 100px;
+    padding-right: 20px;
+    padding-left: 20px;
+    .container{
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      .main__companies-title{
+        display: flex;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        @include calculator_mobile(font-size,14,20);
+        line-height: 1.5;
+        text-align: center;
+        color: #5E6282;
+
+      }
+      .img__container{
+        margin-top: 30px;
+        padding: 10px;
+        img{
+          @include calculator_mobile(max-height,80,160);
+          @include calculator_mobile(max-width,80,160);
+        }
+      }
+    }
+  }
+  .main__form{
+    padding-top: 40px;
+    .container{
+      background: none;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      p{
+        display: none;
+      }
+      input{
+        display: none;
+      }
+      .tele__circle{
+        height: 100%;
+        position: static;
+        @include calculator_mobile(height,30,56);
+        @include calculator_mobile(width,30,56);
+      }
+      .main__form-input{
+        margin-top: 0;
+        margin-right: 10px;
+        .main__form-input-subscribe{
+          @include calculator_mobile(width,80,156);
+          @include calculator_mobile(height,30,56);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          @include calculator_mobile(font-size,12,17);
+        }
+      }
+    }
+  }
+  footer{
+    margin-top: 30px;
+    padding-top: 10px;
+    padding-bottom: 27px;
+    background: #FFF1DA;
+    .container{
+      flex-direction: column;
+      .footer__logo{
+        width: 80%;
+        p:nth-child(1){
+          font-weight: 500;
+          font-size: 44px;
+          line-height: 1.5;
+        }
+        p:nth-child(2){
+          font-size: 13px;
+          line-height: 124.5%;
+        }
+      }
+      .footer__item{
+        a{
+          font-size: 18px;
+          line-height: 124.5%;
+        }
+        .item__title{
+          font-size: 21px;
+          line-height: 124.5%;
+        }
+      }
+      .footer__discover{
+        margin: 0 auto;
+        padding: 58px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        p:nth-child(2){
+          margin-top: 40px;
+          font-size: 20px;
+          line-height: 124.5%;
+          letter-spacing: 0.005em;
+          color: #5E6282;
+        }
+        .footer__apps{
+          img{
+            width: 107px;
+            height: 35px;
+          }
+        }
+      }
+    }
+    h6{
+      margin: 0;
+      font-size: 14px;
+      line-height: 124.5%;
+    }
+  }
 }
